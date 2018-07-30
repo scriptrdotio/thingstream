@@ -1,0 +1,15 @@
+/**
+ * The address of the thingstream server
+ */
+var thingstreamUrl = "https://iotl-api.thingstream.io";
+
+/**
+ * The domainkey and domainsecret to use to authenticate to the thingstream server
+ */
+var domainkey = "";
+var domainsecret = "";
+
+
+
+
+

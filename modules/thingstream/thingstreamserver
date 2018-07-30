@@ -1,0 +1,52 @@
+var configScript = require("./config");
+var clientModule = require("./client");
+var publisherMod = require("./publisher");
+
+/**
+ * Simple wrapper of the Thingstream server's API
+ * @class ThingstreamServer
+ * @constructor
+ * @param {Object} config: configuration object, optional, defaults to the config script
+ *@param{String}[config.domainKey]
+  *@param{String}[config.domainSecret]
+ */
+function Thingstream(config) {
+
+    this.config = {};
+    if (config) {
+        this.config = config;
+    } else {
+        this.config = configScript;
+    }
+    this.client = new clientModule.Client({domainkey: this.config.domainkey, domainsecret: this.config.domainsecret});
+}
+
+/**
+ * @function getPublisher
+ * @return {Object}:instance of publisher/Publisher 
+ */
+Thingstream.prototype.getPublisher = function(){
+
+    if(!this.publisher) {
+        this.publisher = new publisherMod.Publisher(this.client);
+    }
+    return this.publisher;
+}
+
+/**
+ * @function getThing
+ * @return {Object} :instance of thing/Thing
+ */
+Thingstream.prototype.getThing = function(){
+
+    if(!this.thing){
+        this.thing =  new thing.Thing(this.client); 
+    }
+    return this.thing;
+}
+
+
+
+
+
+

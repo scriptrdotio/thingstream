@@ -1,0 +1,85 @@
+const PUBLISH_URL = "/publish";
+
+/**
+ * Simple wrapper of the thingStream server's API
+ * @class Publisher
+ * @constructor
+ * @param {Client}: instance of client created in ThingStream 
+ */
+function Publisher(client){  
+    this.client=client
+}
+
+
+/**
+ * @function publishStringToTopic
+ *@param(Object)[params]: deviceId, qos, topic, content
+ * @return {Object}[message id]
+ */
+Publisher.prototype.publishStringToTopic = function(params){
+
+    var url = PUBLISH_URL + "/topic/string";
+    var instruction = {
+        
+        "url":url,
+        "method":"POST",
+        "params":params
+    };
+    return this.client.callApi(instruction);
+}
+
+/**
+ * @function publishStringToDevice
+ *@param(Object)[params]: deviceId, qos, toDeviceId, content
+ * @return {Object}[message id]
+ */
+Publisher.prototype.publishStringToDevice = function(params){
+
+    var url = PUBLISH_URL + "/device/string";
+    var instruction = {
+        
+        "url":url,
+        "method":"POST",
+        "params":params
+    };
+    return this.client.callApi(instruction);
+}
+
+/**
+ * @function publishBinaryToTopic
+ *@param(Object)[params]: deviceId, qos, topic, binary64content
+ * @return {Object}[message id]
+ */
+Publisher.prototype.publishBinaryToTopic = function(params){
+
+    var url = PUBLISH_URL + "/topic/binary";
+    var instruction = {
+        
+        "url":url,
+        "method":"POST",
+        "params":params
+    };
+    return this.client.callApi(instruction);
+}
+
+/**
+ * @function publishBinaryToDevice
+ *@param(Object)[params]: deviceId, qos, toDeviceId, binary64content
+ * @return {Object}[message id]
+ */
+Publisher.prototype.publishBinaryToDevice = function(params){
+
+    var url = PUBLISH_URL + "/device/binary";
+    var instruction = {
+        
+        "url":url,
+        "method":"POST",
+        "params":params
+    };
+    return this.client.callApi(instruction);
+}
+
+
+
+
+
